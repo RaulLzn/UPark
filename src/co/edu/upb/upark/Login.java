@@ -139,7 +139,7 @@ public class Login extends JFrame implements Runnable {
 				if(text.equals("") || text.length() == 0) {					
 					JOptionPane.showMessageDialog(null, "Debe ingresar su número ID.", "ERROR - Campo Vacío", JOptionPane.ERROR_MESSAGE);
 					textField.setText("");				
-				}
+				} 
 
 				else {
 					String[] idNumberDataFromUsuarios = databaseManager.getIdNumberDataFromUsuarios();
@@ -190,9 +190,9 @@ public class Login extends JFrame implements Runnable {
 						else {
 							JOptionPane.showMessageDialog(null, "El usuario no ha sido encontrado.", "ERROR", JOptionPane.ERROR_MESSAGE);
 							textField.setText("");
-						}// else
+						} 
 					}	
-				}// else
+				}
 
 			}// public void actionPerformed(ActionEvent e)
 
@@ -260,5 +260,5 @@ public class Login extends JFrame implements Runnable {
 		minutes = calendar.get(Calendar.MINUTE)>9?""+calendar.get(Calendar.MINUTE):"0"+calendar.get(Calendar.MINUTE);
 		seconds = calendar.get(Calendar.SECOND)>9?""+calendar.get(Calendar.SECOND):"0"+calendar.get(Calendar.SECOND);
 
-	}
+	} // private void calculate()
 }
