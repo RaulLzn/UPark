@@ -129,16 +129,17 @@ public class Login extends JFrame implements Runnable {
 		contentPane.add(lblNewLabel_1);
 
 		// Creation of the button: "ACCEDER":
-		RoundedButton btnNewButton = new RoundedButton("ACCEDER", new Color(255, 239, 91), new Color(247, 208, 57), 1000);
-		btnNewButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBackground(new Color(255, 239, 91));
-		btnNewButton.setBounds(476, 483, 320, 57);
-		contentPane.add(btnNewButton);
+		RoundedButton accederButton = new RoundedButton("ACCEDER", new Color(255, 239, 91), new Color(247, 208, 57), 1000);
+		accederButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
+		accederButton.setForeground(new Color(0, 0, 0));
+		accederButton.setBackground(new Color(255, 239, 91));
+		accederButton.setBounds(476, 483, 320, 57);
+		accederButton.setFocusable(false);
+		contentPane.add(accederButton);
 
 		databaseManager = new DatabaseManager(); // Instance of the public class DatabaseManager
 
-		btnNewButton.addActionListener(new ActionListener() {
+		accederButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 

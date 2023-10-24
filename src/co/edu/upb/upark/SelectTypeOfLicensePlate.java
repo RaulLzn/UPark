@@ -1,21 +1,15 @@
 package co.edu.upb.upark;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
 public class SelectTypeOfLicensePlate extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -67,33 +61,27 @@ public class SelectTypeOfLicensePlate extends JFrame {
 
 		// Creation of a JLabel containing the text: "Tipo de Placa":
 		JLabel lblTipoPlaca = new JLabel("Tipo de Placa");
-		lblTipoPlaca.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 80));
+		lblTipoPlaca.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 97));
 		lblTipoPlaca.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipoPlaca.setBounds(411, 52, 774, 90);
+		lblTipoPlaca.setBounds(387, 52, 774, 90);
 		contentPane.add(lblTipoPlaca);
 		
         ImageButton diplomaticVehicle  = new ImageButton("", "Media\\DiplomaticVehicle.jpg");
-        diplomaticVehicle.setBounds(86,372, 400, 116);
-        diplomaticVehicle.setBackground(Color.BLUE);
+        diplomaticVehicle.setBounds(86,371, 400, 116);
         contentPane.add(diplomaticVehicle);
 		
+		ImageButton privateVehicle = new ImageButton("", "Media\\PrivateVehicle.jpg");
+		privateVehicle.setBounds(86, 171, 400, 116);
+		contentPane.add(privateVehicle);
 		
-		//JPanel panel = new JPanel();
-		//panel.setBounds(86, 372, 399, 110);
-		//contentPane.add(panel);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(86, 171, 399, 110);
-		contentPane.add(panel_2);
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(786, 372, 399, 110);
-		contentPane.add(panel_3);
-
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBounds(786, 171, 399, 110);
-		contentPane.add(panel_3_1);
-
+		ImageButton classicVehicle = new ImageButton("", "Media\\ClassicVehicle.jpg");
+		classicVehicle.setBounds(785, 371, 400, 116);
+		contentPane.add(classicVehicle);
+		
+		ImageButton publicVehicle = new ImageButton("", "Media\\PublicVehicle.jpg");
+		publicVehicle.setBounds(786, 171, 400, 116);
+		contentPane.add(publicVehicle);
+        
 		JLabel lblNewLabel = new JLabel("Vehículo Particular");
 		lblNewLabel.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -123,8 +111,6 @@ public class SelectTypeOfLicensePlate extends JFrame {
 		lblDeMisionesEspeciales.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 30));
 		lblDeMisionesEspeciales.setBounds(86, 526, 399, 39);
 		contentPane.add(lblDeMisionesEspeciales);
-
-
 
 	} // public SelectTypeOfLicensePlate()
 	

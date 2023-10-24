@@ -110,6 +110,7 @@ public class LoginSecurity extends JFrame {
 		regresarButton.setForeground(new Color(0, 0, 0));
 		regresarButton.setBackground(new Color(243, 37, 68));
 		regresarButton.setBounds(10, 527, 221, 57);
+		regresarButton.setFocusable(false);
 		contentPane.add(regresarButton);
 		regresarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,6 +128,7 @@ public class LoginSecurity extends JFrame {
 		accederButton.setForeground(new Color(0, 0, 0));
 		accederButton.setBackground(new Color(255, 239, 91));
 		accederButton.setBounds(476, 446, 320, 57);
+		accederButton.setFocusable(false);
 		contentPane.add(accederButton);
 		accederButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

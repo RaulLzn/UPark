@@ -134,9 +134,9 @@ public class AddVisitor extends JFrame {
 						dispose();
 						JOptionPane.showMessageDialog(null, "Datos del Visitante Guardados con Éxito", "VISITANTE", JOptionPane.INFORMATION_MESSAGE);
 
-						AddVisitorVehicle a = new AddVisitorVehicle();
-						a.setVisible(true);
-
+						SelectTypeOfLicensePlate selectTypeOfLicensePlate = new SelectTypeOfLicensePlate();
+						selectTypeOfLicensePlate.setVisible(true);
+						
 						conn.close();
 
 					}//try
