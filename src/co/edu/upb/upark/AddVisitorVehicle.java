@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.text.*;
 
 public class AddVisitorVehicle extends JFrame {
 
@@ -26,6 +27,7 @@ public class AddVisitorVehicle extends JFrame {
 	private JLabel marcaLabel;
 	private JLabel colorLabel;
 	private JLabel modeloLabel;
+	private String text1 = "";
 
 	/**
 	 * Launch the application.
@@ -99,7 +101,19 @@ public class AddVisitorVehicle extends JFrame {
 		placaTextField.setBackground(new Color(237, 238, 223));
 		contentPane.add(placaTextField);
 		placaTextField.setColumns(10);
+		
+		((AbstractDocument) placaTextField.getDocument()).setDocumentFilter(new DocumentFilter() {
+		    @Override
+		    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+		        fb.insertString(offset, string.toUpperCase(), attr);
+		    }
 
+		    @Override
+		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+		        fb.replace(offset, length, text.toUpperCase(), attrs);
+		    }
+		});
+		
 		// Creation of the Button: "REGISTRAR":
 		RoundedButton registrarButton = new RoundedButton("REGISTRAR", new Color(255, 239, 91), new Color(247, 208, 57), 1000);
 		registrarButton.setBackground(new Color(255, 239, 91));
@@ -109,7 +123,7 @@ public class AddVisitorVehicle extends JFrame {
 		registrarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String text1 = placaTextField.getText().trim();
+				text1 = placaTextField.getText().trim();
 				String text2 = modeloTextField.getText().trim();
 				String text3 = colorTextField.getText().trim();
 				String text4 = marcaTextField.getText().trim();
@@ -127,6 +141,58 @@ public class AddVisitorVehicle extends JFrame {
 
 				else {	
 
+					boolean verificationPlate = false;
+
+					if( (SelectTypeOfLicensePlate.typeOfLicensePlate == 1) &&
+							(text1.length() == 6) && (text1.charAt(0) >= 'A' && text1.charAt(0) <= 'Z') && 
+							(text1.charAt(1) >= 'A' && text1.charAt(1) <= 'Z') && 
+							(text1.charAt(2) >= 'A' && text1.charAt(2) <= 'Z') &&
+							(Character.isDigit(text1.charAt(3)) && text1.charAt(3) >= '0' && text1.charAt(3) <= '9') &&
+							(Character.isDigit(text1.charAt(4)) && text1.charAt(4) >= '0' && text1.charAt(4) <= '9') &&
+							(Character.isDigit(text1.charAt(5)) && text1.charAt(5) >= '0' && text1.charAt(5) <= '9') ) {	
+
+						verificationPlate = true;
+
+					} // PrivateVehicle
+
+					if( (SelectTypeOfLicensePlate.typeOfLicensePlate == 2) &&
+							(text1.length() == 6) && (text1.charAt(0) >= 'A' && text1.charAt(0) <= 'Z') && 
+							(text1.charAt(1) >= 'A' && text1.charAt(1) <= 'Z') && 
+							(text1.charAt(2) >= 'A' && text1.charAt(2) <= 'Z') &&
+							(Character.isDigit(text1.charAt(3)) && text1.charAt(3) >= '0' && text1.charAt(3) <= '9') &&
+							(Character.isDigit(text1.charAt(4)) && text1.charAt(4) >= '0' && text1.charAt(4) <= '9') &&
+							(Character.isDigit(text1.charAt(5)) && text1.charAt(5) >= '0' && text1.charAt(5) <= '9') ) {	
+
+						verificationPlate = true;
+
+					} // PrivateVehicle// PublicVehicle
+
+					if( SelectTypeOfLicensePlate.typeOfLicensePlate == 3 && 
+							(text1.length() == 6) && (text1.charAt(0) == 'A' || text1.charAt(0) == 'C' || text1.charAt(0) == 'D' || text1.charAt(0) == 'O' || text1.charAt(0) == 'M') && 
+							(text1.charAt(1) == 'A' || text1.charAt(1) == 'C' || text1.charAt(1) == 'D' || text1.charAt(1) == 'O' || text1.charAt(1) == 'M') && 
+							(Character.isDigit(text1.charAt(2)) && text1.charAt(2) >= '0' && text1.charAt(2) <= '9') &&
+							(Character.isDigit(text1.charAt(3)) && text1.charAt(3) >= '0' && text1.charAt(3) <= '9') &&
+							(Character.isDigit(text1.charAt(4)) && text1.charAt(4) >= '0' && text1.charAt(4) <= '9') &&
+							(Character.isDigit(text1.charAt(5)) && text1.charAt(5) >= '0' && text1.charAt(5) <= '9') ) {
+
+						verificationPlate = true;
+
+					} // DiplomaticVehicle
+
+					if( (SelectTypeOfLicensePlate.typeOfLicensePlate == 4) &&
+							(text1.length() == 6) && (text1.charAt(0) >= 'A' && text1.charAt(0) <= 'Z') && 
+							(text1.charAt(1) >= 'A' && text1.charAt(1) <= 'Z') && 
+							(text1.charAt(2) >= 'A' && text1.charAt(2) <= 'Z') &&
+							(Character.isDigit(text1.charAt(3)) && text1.charAt(3) >= '0' && text1.charAt(3) <= '9') &&
+							(Character.isDigit(text1.charAt(4)) && text1.charAt(4) >= '0' && text1.charAt(4) <= '9') &&
+							(Character.isDigit(text1.charAt(5)) && text1.charAt(5) >= '0' && text1.charAt(5) <= '9') ) {
+
+						verificationPlate = true;
+
+					} // ClassicVehicle
+
+					if(verificationPlate == true) {
+
 						try {
 							Connection conn = DriverManager.getConnection("jdbc:mysql://35.222.147.13:3306/parqueadero", "root", "842963");
 
@@ -136,7 +202,7 @@ public class AddVisitorVehicle extends JFrame {
 							String visitorDoc = AddVisitor.visitorDocument;
 
 							preparedStatement.setString(1, marcaTextField.getText());
-							preparedStatement.setString(2, placaTextField.getText());
+							preparedStatement.setString(2, text1);
 							preparedStatement.setString(3, colorTextField.getText());
 							preparedStatement.setString(4, modeloTextField.getText());
 							preparedStatement.setString(5, visitorDoc);
@@ -167,6 +233,30 @@ public class AddVisitorVehicle extends JFrame {
 							i.printStackTrace();
 						}//catch
 
+					} // When verificationPlate == true
+					
+					else {
+						if(SelectTypeOfLicensePlate.typeOfLicensePlate == 1) {
+							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
+							placaTextField.setText("");
+						}
+						
+						else if(SelectTypeOfLicensePlate.typeOfLicensePlate == 2) {
+							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
+							placaTextField.setText("");
+						}
+						
+						else if(SelectTypeOfLicensePlate.typeOfLicensePlate == 3) {
+							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AA1234' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
+							placaTextField.setText("");
+						}
+						
+						else {
+							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
+							placaTextField.setText("");
+						}		
+					} // when verificationPlate == false
+					
 				} // else
 
 			}//public void actionPerformed(ActionEvent e)
