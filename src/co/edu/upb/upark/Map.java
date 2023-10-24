@@ -67,7 +67,7 @@ public class Map extends JFrame {
 		contentPane.add(lblUpbLogo);
 		lblUpbLogo.setIcon(new ImageIcon("Media\\logo-upb-blanco1.png"));
 		
-		// Creation of a JLabel with the Logo of the University:
+		// Creation of a JLabel with the Map of the University Parking Lot:
 		JLabel lblMapa= new JLabel("");
 		lblMapa.setBounds(44, 152, 1184, 365);
 		contentPane.add(lblMapa);

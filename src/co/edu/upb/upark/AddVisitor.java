@@ -79,7 +79,7 @@ public class AddVisitor extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon("Media\\logo-upb-blanco1.png"));
 		contentPane.add(lblNewLabel);
 		
-		// // Creation of a JLabel containing the text: "Datos del Visitante":
+		// Creation of a JLabel containing the text: "Datos del Visitante":
 		JLabel lblNewLabel_1 = new JLabel("Datos del Visitante");
 		lblNewLabel_1.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 80));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
