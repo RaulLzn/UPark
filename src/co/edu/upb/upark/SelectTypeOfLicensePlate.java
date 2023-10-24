@@ -1,6 +1,9 @@
 package co.edu.upb.upark;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -11,6 +14,7 @@ public class SelectTypeOfLicensePlate extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public static int typeOfLicensePlate;
 
 	/**
 	 * Launch the application.
@@ -32,6 +36,8 @@ public class SelectTypeOfLicensePlate extends JFrame {
 	 * Create the frame.
 	 */
 	public SelectTypeOfLicensePlate() {
+		
+		AddVisitorVehicle addVisitorVehicle = new AddVisitorVehicle();
 
 		this.setResizable(false); // Disable the maximize window option
 
@@ -69,18 +75,46 @@ public class SelectTypeOfLicensePlate extends JFrame {
         ImageButton diplomaticVehicle  = new ImageButton("", "Media\\DiplomaticVehicle.jpg");
         diplomaticVehicle.setBounds(86,371, 400, 116);
         contentPane.add(diplomaticVehicle);
+		diplomaticVehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				typeOfLicensePlate = 3;
+				addVisitorVehicle .setVisible(true);
+				dispose(); //Close the current window
+			}
+		});
 		
 		ImageButton privateVehicle = new ImageButton("", "Media\\PrivateVehicle.jpg");
 		privateVehicle.setBounds(86, 171, 400, 116);
 		contentPane.add(privateVehicle);
+		privateVehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				typeOfLicensePlate = 1;
+				addVisitorVehicle .setVisible(true);
+				dispose(); //Close the current window
+			}
+		});
 		
 		ImageButton classicVehicle = new ImageButton("", "Media\\ClassicVehicle.jpg");
 		classicVehicle.setBounds(785, 371, 400, 116);
 		contentPane.add(classicVehicle);
+		classicVehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				typeOfLicensePlate = 4;
+				addVisitorVehicle .setVisible(true);
+				dispose(); //Close the current window
+			}
+		});
 		
 		ImageButton publicVehicle = new ImageButton("", "Media\\PublicVehicle.jpg");
 		publicVehicle.setBounds(786, 171, 400, 116);
 		contentPane.add(publicVehicle);
+		publicVehicle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				typeOfLicensePlate = 1;
+				addVisitorVehicle .setVisible(true);
+				dispose(); //Close the current window
+			}
+		});
         
 		JLabel lblNewLabel = new JLabel("Vehículo Particular");
 		lblNewLabel.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 30));

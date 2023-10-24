@@ -1,23 +1,16 @@
 package co.edu.upb.upark;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-
+import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.border.*;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class MenuSecurity extends JFrame {
 
@@ -93,6 +86,7 @@ public class MenuSecurity extends JFrame {
 		usuariosParqueaderoButton.setBackground(new Color(255, 255, 255));
 		usuariosParqueaderoButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
 		usuariosParqueaderoButton.setBounds(785, 352, 404, 77);
+		usuariosParqueaderoButton.setFocusable(false);
 		contentPane.add(usuariosParqueaderoButton);
 		usuariosParqueaderoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,6 +106,7 @@ public class MenuSecurity extends JFrame {
 		historialButton.setBackground(new Color(255, 255, 255));
 		historialButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
 		historialButton.setBounds(365, 351, 389, 77);
+		historialButton.setFocusable(false);
 		contentPane.add(historialButton);
 		historialButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -127,6 +122,7 @@ public class MenuSecurity extends JFrame {
 		cerrarSesionButton.setForeground(new Color(0, 0, 0));
 		cerrarSesionButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
 		cerrarSesionButton.setBounds(858, 489, 389, 77);
+		cerrarSesionButton.setFocusable(false);
 		contentPane.add(cerrarSesionButton);
 		cerrarSesionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,6 +137,7 @@ public class MenuSecurity extends JFrame {
 		agregarVisitanteButton.setBackground(new Color(255, 239, 91));
 		agregarVisitanteButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 44));
 		agregarVisitanteButton.setBounds(365, 228, 824, 77);
+		agregarVisitanteButton.setFocusable(false);
 		contentPane.add(agregarVisitanteButton);
 		agregarVisitanteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
