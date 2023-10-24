@@ -71,10 +71,16 @@ public class SelectTypeOfLicensePlate extends JFrame {
 		lblTipoPlaca.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoPlaca.setBounds(411, 52, 774, 90);
 		contentPane.add(lblTipoPlaca);
-
-		JPanel panel = new JPanel();
-		panel.setBounds(86, 372, 399, 110);
-		contentPane.add(panel);
+		
+        ImageButton diplomaticVehicle  = new ImageButton("", "Media\\DiplomaticVehicle.jpg");
+        diplomaticVehicle.setBounds(86,372, 400, 116);
+        diplomaticVehicle.setBackground(Color.BLUE);
+        contentPane.add(diplomaticVehicle);
+		
+		
+		//JPanel panel = new JPanel();
+		//panel.setBounds(86, 372, 399, 110);
+		//contentPane.add(panel);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(86, 171, 399, 110);
