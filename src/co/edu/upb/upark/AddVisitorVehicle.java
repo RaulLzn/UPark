@@ -28,6 +28,7 @@ public class AddVisitorVehicle extends JFrame {
 	private JLabel colorLabel;
 	private JLabel modeloLabel;
 	private String text1 = "";
+	private DatabaseManager databaseManager = new DatabaseManager();
 
 	/**
 	 * Launch the application.
@@ -101,19 +102,19 @@ public class AddVisitorVehicle extends JFrame {
 		placaTextField.setBackground(new Color(237, 238, 223));
 		contentPane.add(placaTextField);
 		placaTextField.setColumns(10);
-		
-		((AbstractDocument) placaTextField.getDocument()).setDocumentFilter(new DocumentFilter() {
-		    @Override
-		    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-		        fb.insertString(offset, string.toUpperCase(), attr);
-		    }
 
-		    @Override
-		    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-		        fb.replace(offset, length, text.toUpperCase(), attrs);
-		    }
+		((AbstractDocument) placaTextField.getDocument()).setDocumentFilter(new DocumentFilter() {
+			@Override
+			public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+				fb.insertString(offset, string.toUpperCase(), attr);
+			}
+
+			@Override
+			public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+				fb.replace(offset, length, text.toUpperCase(), attrs);
+			}
 		});
-		
+
 		// Creation of the Button: "REGISTRAR":
 		RoundedButton registrarButton = new RoundedButton("REGISTRAR", new Color(255, 239, 91), new Color(247, 208, 57), 1000);
 		registrarButton.setBackground(new Color(255, 239, 91));
@@ -193,70 +194,91 @@ public class AddVisitorVehicle extends JFrame {
 
 					if(verificationPlate == true) {
 
-						try {
-							Connection conn = DriverManager.getConnection("jdbc:mysql://35.222.147.13:3306/parqueadero", "root", "842963");
+						String[] platesFromUsuariosActuales = databaseManager.platesFromUsuariosActuales();
 
-							String query = "INSERT INTO vehiculos (marca, placa, color, modelo, numeroidentificacion) VALUES (?, ?, ?, ?, ?)";
-							PreparedStatement preparedStatement = conn.prepareStatement(query);
+						int countPlatesFromUsuariosActuales = 0;
 
-							String visitorDoc = AddVisitor.visitorDocument;
-
-							preparedStatement.setString(1, marcaTextField.getText());
-							preparedStatement.setString(2, text1);
-							preparedStatement.setString(3, colorTextField.getText());
-							preparedStatement.setString(4, modeloTextField.getText());
-							preparedStatement.setString(5, visitorDoc);
-							preparedStatement.executeUpdate();
-
-							String queryVisitor = "INSERT INTO usuariosActuales (numeroidentificacion, nombreusuario, documentousuario, placa) VALUES (?, ?, ?, ?)";
-							PreparedStatement preparedStatementVisitor = conn.prepareStatement(queryVisitor);
-
-							String visitorNamee = AddVisitor.visitorName;
-
-							preparedStatementVisitor.setString(1, visitorDoc);
-							preparedStatementVisitor.setString(2, visitorNamee);
-							preparedStatementVisitor.setString(3, visitorDoc);
-							preparedStatementVisitor.setString(4, placaTextField.getText());
-							preparedStatementVisitor.executeUpdate();
-
-							dispose();
-							JOptionPane.showMessageDialog(null, "Datos del Vehículo Guardados con Éxito", "VEHÍCULO", JOptionPane.INFORMATION_MESSAGE);
-							JOptionPane.showMessageDialog(null, "El Visitante Ha Sido Registrado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
-
-							MenuSecurity menuSecurityAddVisitorVehicle = new MenuSecurity();
-							menuSecurityAddVisitorVehicle.setVisible(true);
-
-							conn.close();
+						for(int ii = 0; ii < platesFromUsuariosActuales.length; ii++) {
+							if(text1.equals(platesFromUsuariosActuales[ii]) == true) {
+								countPlatesFromUsuariosActuales++;
+							}
 						}
+						
+						System.out.println(platesFromUsuariosActuales[0]);
+						System.out.println(text1);
+						System.out.println(countPlatesFromUsuariosActuales);
 
-						catch(SQLException i){
-							i.printStackTrace();
-						}//catch
+						if(countPlatesFromUsuariosActuales > 0) {
+							JOptionPane.showMessageDialog(null, "El Vehículo Asociado a la Placa Ingresada, Ya Se Encuentra Dentro del Parqueadero.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
+							placaTextField.setText("");
+						}
+						
+						else {
 
+							try {
+								Connection conn = DriverManager.getConnection("jdbc:mysql://35.222.147.13:3306/parqueadero", "root", "842963");
+
+								String query = "INSERT INTO vehiculos (marca, placa, color, modelo, numeroidentificacion) VALUES (?, ?, ?, ?, ?)";
+								PreparedStatement preparedStatement = conn.prepareStatement(query);
+
+								String visitorDoc = AddVisitor.visitorDocument;
+
+								preparedStatement.setString(1, marcaTextField.getText());
+								preparedStatement.setString(2, text1);
+								preparedStatement.setString(3, colorTextField.getText());
+								preparedStatement.setString(4, modeloTextField.getText());
+								preparedStatement.setString(5, visitorDoc);
+								preparedStatement.executeUpdate();
+
+								String queryVisitor = "INSERT INTO usuariosActuales (numeroidentificacion, nombreusuario, documentousuario, placa) VALUES (?, ?, ?, ?)";
+								PreparedStatement preparedStatementVisitor = conn.prepareStatement(queryVisitor);
+
+								String visitorNamee = AddVisitor.visitorName;
+
+								preparedStatementVisitor.setString(1, visitorDoc);
+								preparedStatementVisitor.setString(2, visitorNamee);
+								preparedStatementVisitor.setString(3, visitorDoc);
+								preparedStatementVisitor.setString(4, placaTextField.getText());
+								preparedStatementVisitor.executeUpdate();
+
+								dispose();
+								JOptionPane.showMessageDialog(null, "Datos del Vehículo Guardados con Éxito", "VEHÍCULO", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null, "El Visitante Ha Sido Registrado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+
+								MenuSecurity menuSecurityAddVisitorVehicle = new MenuSecurity();
+								menuSecurityAddVisitorVehicle.setVisible(true);
+
+								conn.close();
+							}
+
+							catch(SQLException i){
+								i.printStackTrace();
+							}//catch
+						}
 					} // When verificationPlate == true
-					
+
 					else {
 						if(SelectTypeOfLicensePlate.typeOfLicensePlate == 1) {
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}
-						
+
 						else if(SelectTypeOfLicensePlate.typeOfLicensePlate == 2) {
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}
-						
+
 						else if(SelectTypeOfLicensePlate.typeOfLicensePlate == 3) {
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AA1234' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}
-						
+
 						else {
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}		
 					} // when verificationPlate == false
-					
+
 				} // else
 
 			}//public void actionPerformed(ActionEvent e)

@@ -11,7 +11,11 @@ import javax.swing.JButton;
 import javax.swing.Timer;
 
 public class RoundedButton extends JButton {
-    private Color startColor;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Color startColor;
     private Color endColor;
     private int animationDuration; // In milliseconds
 

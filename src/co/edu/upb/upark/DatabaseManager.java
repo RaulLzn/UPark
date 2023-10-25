@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.*;
 
 public class DatabaseManager {
 
@@ -20,7 +20,6 @@ public class DatabaseManager {
 		}
 
 	} // public DatabaseManager()
-
 
 	public String[] getIdNumberDataFromUsuarios() {
 
@@ -44,7 +43,6 @@ public class DatabaseManager {
 
 	} //  public String[] getIdNumberDataFromUsuarios()
 
-
 	public String[] getRolDataFromUsuarios() {
 		String[] rolDataFromUsuarios = null;
 		try {
@@ -62,8 +60,7 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 		return rolDataFromUsuarios;
-	} //
-
+	} // public String[] getRolDataFromUsuarios()
 
 	public String[] getCurrentUserDataFromUsuariosActuales() {
 		String[] currentUsersDataFromUsuariosActuales = null;
@@ -84,7 +81,6 @@ public class DatabaseManager {
 		return currentUsersDataFromUsuariosActuales;
 	} // public String[] getCurrentUserDataFromUsuariosActuales()
 
-
 	public String[] getNamesFromUsuarios() {
 		String[] namesFromUsuarios = null;
 		try {
@@ -103,7 +99,6 @@ public class DatabaseManager {
 		}	
 		return namesFromUsuarios;
 	} // public String[] getNamesFromUsuarios()
-
 
 	public String[] getDocumentsFromUsuarios() {
 		String[] documentsFromUsuarios = null;
@@ -124,7 +119,6 @@ public class DatabaseManager {
 		return documentsFromUsuarios;
 	} // public String[] getDocumentsFromUsuarios()
 
-	
 	public int countRowsFromUsuariosActuales() {
 		int rowCount = 0;
 		
@@ -145,7 +139,26 @@ public class DatabaseManager {
 		
 		return rowCount;
 	} // public int countRowsFromUsuariosActuales()
-
+	
+	public String[] platesFromUsuariosActuales() {
+		String[] platesFromUsuariosActuales = null;
+				
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT placa FROM usuariosActuales");
+			ArrayList<String> listPlatesFromUsuariosActuales = new ArrayList<>();
+			while(rs.next()) {
+				String valor = rs.getString("placa");
+				listPlatesFromUsuariosActuales.add(valor);
+			}
+			platesFromUsuariosActuales = listPlatesFromUsuariosActuales.toArray(new String[0]);
+			stmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return platesFromUsuariosActuales;	
+	} // public String[] platesFromUsuariosActuales()
 	
 	public void closeConnection() {
 		try {
@@ -154,6 +167,5 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 	} // public void closeConnection()
-
 
 } // public class DatabaseManager
