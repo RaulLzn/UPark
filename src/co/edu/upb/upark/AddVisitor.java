@@ -1,28 +1,10 @@
 package co.edu.upb.upark;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.sql.*;
 import java.awt.event.ActionEvent;
 
 public class AddVisitor extends JFrame {
@@ -99,6 +81,7 @@ public class AddVisitor extends JFrame {
 		siguienteButton.setBackground(new Color(255, 239, 91));
 		siguienteButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
 		siguienteButton.setBounds(476, 511, 320, 57);
+		siguienteButton.setFocusable(false);
 		contentPane.add(siguienteButton);
 		siguienteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,6 +138,7 @@ public class AddVisitor extends JFrame {
 		regresarButton.setForeground(new Color(0, 0, 0));
 		regresarButton.setBackground(new Color(243, 37, 68));
 		regresarButton.setBounds(1021, 511, 221, 57);
+		regresarButton.setFocusable(false);
 		contentPane.add(regresarButton);
 		regresarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -71,11 +71,11 @@ public class Success extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		// Creation of a JLabel containing the text: "INGRESO EXITOSO":
-		JLabel lblNewLabel_1 = new JLabel("INGRESO EXITOSO");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 99));
-		lblNewLabel_1.setBounds(188, 153, 895, 124);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblIngresoExitoso = new JLabel("INGRESO EXITOSO");
+		lblIngresoExitoso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIngresoExitoso.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 99));
+		lblIngresoExitoso.setBounds(188, 153, 895, 124);
+		contentPane.add(lblIngresoExitoso);
 
 		String name = "";
 		int numberPosition = Login.positionNumber;

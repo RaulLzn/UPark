@@ -129,8 +129,9 @@ public class Exit extends JFrame implements Runnable {
 		RoundedButton confirmButton = new RoundedButton("CONFIRMAR", new Color(255, 239, 91), new Color(247, 208, 57), 1000);
 		confirmButton.setBackground(new Color(255, 239, 91));
 		confirmButton.setForeground(new Color(0, 0, 0));
-		confirmButton.setFont(new Font("Cambria", Font.BOLD, 50));
+		confirmButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 45));
 		confirmButton.setBounds(826, 454, 335, 82);
+		confirmButton.setFocusable(false);
 		contentPane.add(confirmButton);
 
 		confirmButton.addActionListener(new ActionListener() {
@@ -185,8 +186,9 @@ public class Exit extends JFrame implements Runnable {
 		regresarButton.setBackground(new Color(229, 86, 109));
 		regresarButton.setHorizontalAlignment(SwingConstants.CENTER);
 		regresarButton.setForeground(new Color(0, 0, 0));
-		regresarButton.setFont(new Font("Cambria", Font.BOLD, 50));
+		regresarButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 45));
 		regresarButton.setBounds(64, 454, 385, 82);
+		regresarButton.setFocusable(false);
 		contentPane.add(regresarButton);
 		
 		// Creation of a JLabel containing the vehicle Information:

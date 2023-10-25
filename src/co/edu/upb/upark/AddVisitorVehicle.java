@@ -120,6 +120,7 @@ public class AddVisitorVehicle extends JFrame {
 		registrarButton.setBackground(new Color(255, 239, 91));
 		registrarButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
 		registrarButton.setBounds(476, 495, 320, 57);
+		registrarButton.setFocusable(false);
 		contentPane.add(registrarButton);
 		registrarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -315,6 +316,6 @@ public class AddVisitorVehicle extends JFrame {
 		modeloLabel.setBounds(671, 351, 166, 30);
 		contentPane.add(modeloLabel);
 
-	}
+	} // public AddVisitorVehicle()
 
 } // public class AddVisitorVehicle extends JFrame
