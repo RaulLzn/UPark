@@ -31,6 +31,10 @@ import java.util.*;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login extends JFrame implements Runnable {
 
@@ -56,6 +60,7 @@ public class Login extends JFrame implements Runnable {
 	Thread thread1;
 	private JLabel lblClock = new JLabel("");
 	private DatabaseManager databaseManager;
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	/**
 	 * Launch the application.
@@ -145,7 +150,8 @@ public class Login extends JFrame implements Runnable {
 
 				String text = textField.getText().trim(); 
 
-				if(text.equals("") || text.length() == 0) {					
+				if(text.equals("") || text.length() == 0) {
+					soundPlayer.playSound("Media\\ErrorSound.wav");
 					JOptionPane.showMessageDialog(null, "Debe ingresar su número ID.", "ERROR - Campo Vacío", JOptionPane.ERROR_MESSAGE);
 					textField.setText("");				
 				} 
@@ -178,6 +184,7 @@ public class Login extends JFrame implements Runnable {
 						dispose();
 
 						//Display Exit exitFrame
+						soundPlayer.playSound("Media\\AccessSound.wav");
 						Exit exitFrame = new Exit();
 						exitFrame.setVisible(true);
 						databaseManager.closeConnection();
@@ -185,16 +192,20 @@ public class Login extends JFrame implements Runnable {
 					else {
 						if(counter > 0) {
 							if(rolDataFromUsuarios[positionNumber].equals("Vigilante")) {
+								
+								soundPlayer.playSound("Media\\AccessSound.wav");
 								LoginSecurity l = new LoginSecurity();
 								l.setVisible(true);
 								dispose(); //Close the current window
 							}// Security.
 							else {		
 								if(databaseManager.countRowsFromUsuariosActuales() == 15) {
+									soundPlayer.playSound("Media\\ErrorSound.wav");
 									JOptionPane.showMessageDialog(null, "Los cupos del parqueadero han alcanzado su límite.", "ERROR-CUPOS-LÍMITE", JOptionPane.ERROR_MESSAGE);
 									textField.setText("");
 								}
 								else {
+									soundPlayer.playSound("Media\\AccessSound.wav");
 									SelectCar p = new SelectCar();
 									p.setVisible(true);
 									dispose(); //Close the current window
@@ -203,6 +214,7 @@ public class Login extends JFrame implements Runnable {
 						}// if(counter > 0)
 
 						else {
+							soundPlayer.playSound("Media\\ErrorSound.wav");
 							JOptionPane.showMessageDialog(null, "El usuario no ha sido encontrado.", "ERROR", JOptionPane.ERROR_MESSAGE);
 							textField.setText("");
 						} 
@@ -250,6 +262,7 @@ public class Login extends JFrame implements Runnable {
 		RoundedButton observarMapaButton= new RoundedButton("OBSERVAR MAPA", new Color(255, 255, 255),new Color(196, 193, 186), 1000);
 		observarMapaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				Map map = new Map();
 				map.setVisible(true);
 				dispose(); //Close the current window

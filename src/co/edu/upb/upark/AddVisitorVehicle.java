@@ -132,7 +132,7 @@ public class AddVisitorVehicle extends JFrame {
 
 				if(text1.equals("") || text1.length() == 0 || text2.equals("") || text2.length() == 0 || text3.equals("") || text3.length() == 0 ||
 						text4.equals("") || text4.length() == 0){
-
+					
 					JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "ERROR - Campo(s) vacío(s)", JOptionPane.ERROR_MESSAGE);
 					placaTextField.setText("");
 					modeloTextField.setText("");

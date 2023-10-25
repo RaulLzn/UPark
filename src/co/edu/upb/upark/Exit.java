@@ -24,6 +24,7 @@ public class Exit extends JFrame implements Runnable {
 	Calendar calendar;
 	Thread thread1;
 	private JLabel lblClock = new JLabel("");
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -155,6 +156,7 @@ public class Exit extends JFrame implements Runnable {
 				Timer timer = new Timer(2000, new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent evt) {
+						soundPlayer.playSound("Media\\CelebrationSoundEffect.wav");
 						dialog.dispose();
 						// Volver a la ventana de login
 						Login loginFrame = new Login();
@@ -208,6 +210,7 @@ public class Exit extends JFrame implements Runnable {
 
 		regresarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				Login loginFrame = new Login();
 				loginFrame.setVisible(true);  
 				dispose();  

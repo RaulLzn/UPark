@@ -55,6 +55,7 @@ public class SelectCar extends JFrame implements Runnable {
 	Calendar calendar;
 	Thread thread1;
 	private JLabel lblClock = new JLabel("");
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	/**
 	 * Launch the application.
@@ -225,12 +226,15 @@ public class SelectCar extends JFrame implements Runnable {
 		btnNewButton.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 31));
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setBackground(new Color(255, 239, 91));
+		btnNewButton.setFocusable(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// close SelectCar
 				dispose();
 
 				try {
+					soundPlayer.playSound("Media\\AccessSound.wav");
+					
 					Connection conn = DriverManager.getConnection("jdbc:mysql://35.222.147.13:3306/parqueadero", "root", "842963");
 
 					String query = "INSERT INTO usuariosActuales (numeroidentificacion, nombreusuario, documentousuario, placa) VALUES (?, ?, ?, ?)";
@@ -264,7 +268,8 @@ public class SelectCar extends JFrame implements Runnable {
 				catch(SQLException i){
 					i.printStackTrace();
 				}// catch		        
-
+				
+				soundPlayer.playSound("Media\\CelebrationSoundEffect.wav");
 				// display Success
 				Success s = new Success();
 				s.setVisible(true);

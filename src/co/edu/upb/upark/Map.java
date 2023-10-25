@@ -20,6 +20,7 @@ public class Map extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	/**
 	 * Launch the application.
@@ -90,7 +91,7 @@ public class Map extends JFrame {
 		contentPane.add(regresarButton);
 		regresarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				Login ls = new Login();
 				ls.setVisible(true);
 				dispose(); //Close the current window
