@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class HistorialVentana extends JFrame {
-    private JTable tablaHistorial;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTable tablaHistorial;
 
     public HistorialVentana() {
         initComponents();
