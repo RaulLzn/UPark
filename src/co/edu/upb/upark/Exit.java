@@ -138,6 +138,7 @@ public class Exit extends JFrame implements Runnable {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.222.147.13:3306/parqueadero", "root", "842963")) {
+					soundPlayer.playSound("Media\\AccessSound.wav");
 					try (Statement statement = connection.createStatement()) {
 						String deleteQuery = "DELETE FROM usuariosActuales WHERE NumeroIdentificacion = '" + Login.IdentificationNumberExit + "'";
 						statement.executeUpdate(deleteQuery);

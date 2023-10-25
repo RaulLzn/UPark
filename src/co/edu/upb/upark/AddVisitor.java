@@ -18,6 +18,7 @@ public class AddVisitor extends JFrame {
 	private RoundedTextField nombreTextField;
 	public static String visitorDocument;
 	public static String visitorName;
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	/**
 	 * Launch the application.
@@ -90,7 +91,7 @@ public class AddVisitor extends JFrame {
 				String text2 = nombreTextField.getText().trim();
 
 				if(text1.equals("") || text1.length() == 0 || text2.equals("") || text2.length() == 0) {
-
+					soundPlayer.playSound("Media\\ErrorSound.wav");
 					JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "ERROR - Campo(s) vacío(s)", JOptionPane.ERROR_MESSAGE);
 					documentoTextField.setText("");
 					nombreTextField.setText("");
@@ -115,6 +116,7 @@ public class AddVisitor extends JFrame {
 						visitorName = nombreTextField.getText();
 
 						dispose();
+						soundPlayer.playSound("Media\\AccessSound.wav");
 						JOptionPane.showMessageDialog(null, "Datos del Visitante Guardados con Éxito", "VISITANTE", JOptionPane.INFORMATION_MESSAGE);
 
 						SelectTypeOfLicensePlate selectTypeOfLicensePlate = new SelectTypeOfLicensePlate();
@@ -142,7 +144,7 @@ public class AddVisitor extends JFrame {
 		contentPane.add(regresarButton);
 		regresarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				MenuSecurity menuSecurityAddVisitor = new MenuSecurity();
 				menuSecurityAddVisitor.setVisible(true);
 				dispose(); //Close the current window

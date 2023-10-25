@@ -20,6 +20,7 @@ public class MenuSecurity extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static String nameMenuSecurity = "";
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	/**
 	 * Launch the application.
@@ -96,6 +97,7 @@ public class MenuSecurity extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        // Crear una instancia de UsuariosEnParqueadero y mostrar la ventana
 		        UsuariosEnParqueadero ventanaUsuarios = new UsuariosEnParqueadero();
+		        soundPlayer.playSound("Media\\ButtonSound.wav");
 		        ventanaUsuarios.mostrarDatosUsuarios();
 		        ventanaUsuarios.setVisible(true);
 		    }
@@ -111,6 +113,7 @@ public class MenuSecurity extends JFrame {
 		historialButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        HistorialVentana ventanaHistorial = new HistorialVentana();
+		        soundPlayer.playSound("Media\\ButtonSound.wav");
 		        ventanaHistorial.mostrarDatosHistorial();
 		        ventanaHistorial.setVisible(true);
 		    }
@@ -127,6 +130,7 @@ public class MenuSecurity extends JFrame {
 		cerrarSesionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				Login loginMenuSecurity = new Login();
 				loginMenuSecurity.setVisible(true);
 			}
@@ -141,6 +145,7 @@ public class MenuSecurity extends JFrame {
 		contentPane.add(agregarVisitanteButton);
 		agregarVisitanteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				AddVisitor addVisitorFrame = new AddVisitor();
 				addVisitorFrame.setVisible(true);
 				dispose(); //Close the current window	

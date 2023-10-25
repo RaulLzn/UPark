@@ -36,7 +36,7 @@ public class LoginSecurity extends JFrame {
 	
 	private JPanel contentPane;
 	private RoundedPasswordField passwordField;
-
+	private SoundPlayer soundPlayer = new SoundPlayer();
 	public static String name = "";
 
 	/**
@@ -114,7 +114,7 @@ public class LoginSecurity extends JFrame {
 		contentPane.add(regresarButton);
 		regresarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				soundPlayer.playSound("Media\\ButtonSound.wav");
 				Login ls = new Login();
 				ls.setVisible(true);
 				dispose(); //Close the current window
@@ -136,6 +136,7 @@ public class LoginSecurity extends JFrame {
 				char[] passwordVerification = passwordField.getPassword();
 				
 				if(passwordVerification.length == 0) {
+					soundPlayer.playSound("Media\\ErrorSound.wav");
 					JOptionPane.showMessageDialog(null, "Debe ingresar su contraseña.", "ERROR - Campo Vacío", JOptionPane.ERROR_MESSAGE);
 					passwordField.setText("");
 				}
@@ -171,6 +172,7 @@ public class LoginSecurity extends JFrame {
 						if(arrayLoginSecurity[positionLoginSecurity].equals(passwordFinal)) {
 
 							name = arrayLoginSecurityName[positionLoginSecurity];
+							soundPlayer.playSound("Media\\AccessSound.wav");
 							MenuSecurity m = new MenuSecurity();
 							m.setVisible(true);
 							dispose(); //Close the current window
@@ -178,6 +180,7 @@ public class LoginSecurity extends JFrame {
 						}//if
 
 						else {
+							soundPlayer.playSound("Media\\ErrorSound.wav");
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
 							passwordField.setText("");
 						}//else

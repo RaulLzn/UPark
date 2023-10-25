@@ -29,6 +29,7 @@ public class AddVisitorVehicle extends JFrame {
 	private JLabel modeloLabel;
 	private String text1 = "";
 	private DatabaseManager databaseManager = new DatabaseManager();
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	/**
 	 * Launch the application.
@@ -133,6 +134,7 @@ public class AddVisitorVehicle extends JFrame {
 				if(text1.equals("") || text1.length() == 0 || text2.equals("") || text2.length() == 0 || text3.equals("") || text3.length() == 0 ||
 						text4.equals("") || text4.length() == 0){
 					
+					soundPlayer.playSound("Media\\ErrorSound.wav");
 					JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "ERROR - Campo(s) vacío(s)", JOptionPane.ERROR_MESSAGE);
 					placaTextField.setText("");
 					modeloTextField.setText("");
@@ -243,6 +245,7 @@ public class AddVisitorVehicle extends JFrame {
 								preparedStatementVisitor.executeUpdate();
 
 								dispose();
+								soundPlayer.playSound("Media\\AccessSound.wav");
 								JOptionPane.showMessageDialog(null, "Datos del Vehículo Guardados con Éxito", "VEHÍCULO", JOptionPane.INFORMATION_MESSAGE);
 								JOptionPane.showMessageDialog(null, "El Visitante Ha Sido Registrado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
 
@@ -260,21 +263,25 @@ public class AddVisitorVehicle extends JFrame {
 
 					else {
 						if(SelectTypeOfLicensePlate.typeOfLicensePlate == 1) {
+							soundPlayer.playSound("Media\\ErrorSound.wav");
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}
 
 						else if(SelectTypeOfLicensePlate.typeOfLicensePlate == 2) {
+							soundPlayer.playSound("Media\\ErrorSound.wav");
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}
 
 						else if(SelectTypeOfLicensePlate.typeOfLicensePlate == 3) {
+							soundPlayer.playSound("Media\\ErrorSound.wav");
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AA1234' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}
 
 						else {
+							soundPlayer.playSound("Media\\ErrorSound.wav");
 							JOptionPane.showMessageDialog(null, "La Placa Ingresada No Corresponde a la Forma: 'AAA123' Sin Espacios Entre Caracteres.", "ERROR - PLACA NO VÁLIDA",JOptionPane.ERROR_MESSAGE);
 							placaTextField.setText("");
 						}		
